@@ -63,8 +63,9 @@ export default class RenderDiffPlugin extends Plugin {
 				el.createEl("p", { text: "No changes" });
 			}
 
+			const parsedDiff = parse(diff);
 			const fragment = sanitizeHTMLToDom(
-				html(parse(diff), {
+				html(parsedDiff, {
 					drawFileList: false,
 					matching: "lines",
 					outputFormat: "side-by-side",
@@ -74,7 +75,7 @@ export default class RenderDiffPlugin extends Plugin {
 
 			el.append(fragment);
 
-			el.querySelectorAll<HTMLElement>(".d2h-file-wrapper").forEach((file) => {
+			el.querySelectorAll<HTMLElement>(".d2h-file-wrapper").forEach((file, index) => {
 				const header = file.querySelector<HTMLElement>(".d2h-file-header");
 				const name = file.querySelector<HTMLElement>(".d2h-file-name-wrapper");
 				const content = file.querySelector<HTMLElement>(
@@ -87,6 +88,28 @@ export default class RenderDiffPlugin extends Plugin {
 				setIcon(chevron, "chevron-right");
 				chevron.setAttribute("aria-hidden", "true");
 				name.prepend(chevron);
+
+				name.querySelector(".d2h-tag")?.remove();
+				const fileStats = parsedDiff[index];
+				if (fileStats) {
+					const summary = document.createElement("span");
+					summary.className = "show-diff-enhanced-stats";
+					summary.setAttribute(
+						"aria-label",
+						`${fileStats.addedLines} lines added, ${fileStats.deletedLines} lines deleted`
+					);
+
+					const added = document.createElement("span");
+					added.className = "show-diff-enhanced-added";
+					added.textContent = `+${fileStats.addedLines}`;
+
+					const deleted = document.createElement("span");
+					deleted.className = "show-diff-enhanced-deleted";
+					deleted.textContent = `−${fileStats.deletedLines}`;
+
+					summary.append(added, deleted);
+					name.append(summary);
+				}
 
 				header.classList.add("show-diff-enhanced-toggle");
 				header.setAttribute("role", "button");

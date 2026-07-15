@@ -113,6 +113,25 @@
 		transform: rotate(90deg);
 	}
 
+	.show-diff-enhanced-stats {
+		display: inline-flex;
+		gap: 0.6em;
+		margin-left: auto;
+		padding-left: 1em;
+		font-family: var(--font-monospace);
+		font-size: var(--font-smallest);
+		font-variant-numeric: tabular-nums;
+		white-space: nowrap;
+	}
+
+	.show-diff-enhanced-added {
+		color: #479845;
+	}
+
+	.show-diff-enhanced-deleted {
+		color: #b3383e;
+	}
+
 	.d2h-file-diff.show-diff-enhanced-collapsed,
 	.d2h-files-diff.show-diff-enhanced-collapsed {
 		display: none !important;
