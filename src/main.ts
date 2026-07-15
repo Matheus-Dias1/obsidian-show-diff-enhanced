@@ -77,7 +77,9 @@ export default class RenderDiffPlugin extends Plugin {
 			el.querySelectorAll<HTMLElement>(".d2h-file-wrapper").forEach((file) => {
 				const header = file.querySelector<HTMLElement>(".d2h-file-header");
 				const name = file.querySelector<HTMLElement>(".d2h-file-name-wrapper");
-				const content = file.querySelector<HTMLElement>(".d2h-file-diff");
+				const content = file.querySelector<HTMLElement>(
+					".d2h-file-diff, .d2h-files-diff"
+				);
 				if (!header || !name || !content) return;
 
 				const chevron = document.createElement("span");

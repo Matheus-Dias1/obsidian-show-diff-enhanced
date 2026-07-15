@@ -113,7 +113,8 @@
 		transform: rotate(90deg);
 	}
 
-	.d2h-file-diff.show-diff-enhanced-collapsed {
+	.d2h-file-diff.show-diff-enhanced-collapsed,
+	.d2h-files-diff.show-diff-enhanced-collapsed {
 		display: none !important;
 	}
 
