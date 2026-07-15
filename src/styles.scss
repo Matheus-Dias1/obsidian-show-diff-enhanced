@@ -132,6 +132,7 @@
 		background-color: var(--background-primary);
 		border-color: var(--divider-color);
 		color: var(--text-faint);
+		display: table-cell;
 		min-width: 4em;
 		position: static;
 		width: 4em;
@@ -165,19 +166,20 @@
 		background-color: rgba(var(--background-modifier-error-rgb), 0.2);
 	}
 
-	.d2h-code-line ins {
-		background-color: rgba(var(--background-modifier-success-rgb), 0.4);
+	.d2h-code-line ins, .d2h-code-side-line ins {
+		background-color: #479845;
 	}
 
-	.d2h-code-line del {
-		background-color: rgba(var(--background-modifier-error-rgb), 0.4);
+	.d2h-code-line del, .d2h-code-side-line del {
+		background-color: #b3383e;
 	}
 
 	.d2h-cntx .d2h-code-line {
 		color: var(--text-muted);
 	}
 
-	.d2h-code-line del, .d2h-code-line ins {
+	.d2h-code-line del, .d2h-code-line ins,
+	.d2h-code-side-line del, .d2h-code-side-line ins {
 		border-radius: 0;
 	}
 
