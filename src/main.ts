@@ -71,27 +71,33 @@ export default class RenderDiffPlugin extends Plugin {
 				})
 			);
 
-			fragment.querySelectorAll<HTMLElement>(".d2h-file-wrapper").forEach((file) => {
+			el.append(fragment);
+
+			el.querySelectorAll<HTMLElement>(".d2h-file-wrapper").forEach((file) => {
 				const header = file.querySelector<HTMLElement>(".d2h-file-header");
+				const name = file.querySelector<HTMLElement>(".d2h-file-name-wrapper");
 				const content = file.querySelector<HTMLElement>(".d2h-file-diff");
-				if (!header || !content) return;
+				if (!header || !name || !content) return;
 
 				const chevron = document.createElement("span");
 				chevron.className = "show-diff-enhanced-chevron";
 				chevron.setAttribute("aria-hidden", "true");
-				header.prepend(chevron);
+				name.prepend(chevron);
 
 				header.classList.add("show-diff-enhanced-toggle");
 				header.setAttribute("role", "button");
 				header.setAttribute("tabindex", "0");
 				header.setAttribute("aria-expanded", "false");
-				content.hidden = true;
+				content.classList.add("show-diff-enhanced-collapsed");
 
 				const toggle = () => {
 					const expanded = header.getAttribute("aria-expanded") === "true";
 					const nextExpanded = !expanded;
 					header.setAttribute("aria-expanded", String(nextExpanded));
-					content.hidden = !nextExpanded;
+					content.classList.toggle(
+						"show-diff-enhanced-collapsed",
+						!nextExpanded
+					);
 				};
 
 				header.addEventListener("click", toggle);
@@ -101,8 +107,6 @@ export default class RenderDiffPlugin extends Plugin {
 					toggle();
 				});
 			});
-
-			el.append(fragment);
 		} catch (e) {
 			el.createEl("pre", { text: e });
 		}
