@@ -3,6 +3,7 @@ import {
 	parseYaml,
 	Plugin,
 	sanitizeHTMLToDom,
+	setIcon,
 } from "obsidian";
 import { html, parse } from "diff2html";
 import { createDailyDiffCodeBlock, gitDiff } from "./utils";
@@ -81,7 +82,7 @@ export default class RenderDiffPlugin extends Plugin {
 
 				const chevron = document.createElement("span");
 				chevron.className = "show-diff-enhanced-chevron";
-				chevron.textContent = "▶";
+				setIcon(chevron, "chevron-right");
 				chevron.setAttribute("aria-hidden", "true");
 				name.prepend(chevron);
 
@@ -107,6 +108,22 @@ export default class RenderDiffPlugin extends Plugin {
 					event.preventDefault();
 					toggle();
 				});
+
+				const sides = file.querySelectorAll<HTMLElement>(".d2h-file-side-diff");
+				if (sides.length === 2) {
+					let syncingScroll = false;
+					const synchronize = (source: HTMLElement, target: HTMLElement) => {
+						if (syncingScroll) return;
+						syncingScroll = true;
+						target.scrollLeft = source.scrollLeft;
+						requestAnimationFrame(() => {
+							syncingScroll = false;
+						});
+					};
+
+					sides[0].addEventListener("scroll", () => synchronize(sides[0], sides[1]));
+					sides[1].addEventListener("scroll", () => synchronize(sides[1], sides[0]));
+				}
 			});
 		} catch (e) {
 			el.createEl("pre", { text: e });

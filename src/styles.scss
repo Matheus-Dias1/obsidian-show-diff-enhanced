@@ -92,14 +92,21 @@
 	}
 
 	.show-diff-enhanced-chevron {
-		display: inline-block;
+		display: inline-flex !important;
+		align-items: center;
+		justify-content: center;
 		flex: 0 0 1em;
 		width: 1em;
-		font-size: 0.75em;
-		line-height: 1;
-		text-align: center;
 		margin-right: 10px;
 		transition: transform 120ms ease;
+
+		svg {
+			display: block !important;
+			width: 14px;
+			height: 14px;
+			color: currentColor;
+			stroke: currentColor;
+		}
 	}
 
 	.d2h-file-header[aria-expanded="true"] .show-diff-enhanced-chevron {
@@ -118,6 +125,11 @@
 		overflow-x: auto;
 	}
 
+	.d2h-file-side-diff .d2h-diff-table {
+		width: max-content;
+		min-width: 100%;
+	}
+
 	.d2h-code-side-line {
 		box-sizing: border-box;
 		display: flex;
@@ -125,6 +137,7 @@
 		padding-right: 0;
 		padding-left: 0.75em;
 		width: 100%;
+		min-width: max-content;
 		white-space: nowrap;
 	}
 
