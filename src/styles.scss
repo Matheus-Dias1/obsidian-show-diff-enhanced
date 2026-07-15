@@ -16,6 +16,13 @@
 	}
 }
 
+.cm-preview-code-block.cm-lang-show-diff {
+	width: min(1280px, calc(100vw - 64px));
+	max-width: none;
+	margin-left: 50%;
+	transform: translateX(-50%);
+}
+
 :not(#fake-id) .block-language-show-diff {
 	@include meta.load-css("diff2html.min.css");
 	@include reset-obsidian-table-styles;
@@ -83,12 +90,11 @@
 
 	.show-diff-enhanced-chevron {
 		display: inline-block;
-		flex: 0 0 auto;
-		width: 0;
-		height: 0;
-		border-top: 5px solid transparent;
-		border-bottom: 5px solid transparent;
-		border-left: 7px solid currentColor;
+		flex: 0 0 1em;
+		width: 1em;
+		font-size: 0.75em;
+		line-height: 1;
+		text-align: center;
 		margin-right: 10px;
 		transition: transform 120ms ease;
 	}
@@ -112,9 +118,9 @@
 	.d2h-code-side-line {
 		box-sizing: border-box;
 		display: flex;
-		gap: 1em;
+		gap: 0.5em;
 		padding-right: 0;
-		padding-left: 4.5em;
+		padding-left: 0.75em;
 		width: 100%;
 		white-space: nowrap;
 	}
@@ -123,6 +129,13 @@
 		background-color: var(--background-primary);
 		border-color: var(--divider-color);
 		color: var(--text-faint);
+		min-width: 4em;
+		position: static;
+		width: 4em;
+	}
+
+	.d2h-diff-table td:nth-child(2) {
+		width: auto;
 	}
 
 	.d2h-code-side-emptyplaceholder, .d2h-emptyplaceholder {

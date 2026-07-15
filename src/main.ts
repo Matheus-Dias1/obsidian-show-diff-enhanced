@@ -81,6 +81,7 @@ export default class RenderDiffPlugin extends Plugin {
 
 				const chevron = document.createElement("span");
 				chevron.className = "show-diff-enhanced-chevron";
+				chevron.textContent = "▶";
 				chevron.setAttribute("aria-hidden", "true");
 				name.prepend(chevron);
 
