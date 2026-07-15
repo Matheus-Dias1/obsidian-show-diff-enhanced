@@ -17,10 +17,10 @@
 }
 
 .cm-preview-code-block.cm-lang-show-diff {
-	width: min(1280px, calc(100vw - 64px));
+	--show-diff-enhanced-width: min(1280px, calc(100vw - 64px));
+	width: var(--show-diff-enhanced-width);
 	max-width: none;
-	margin-left: 50%;
-	transform: translateX(-50%);
+	margin-inline: calc((100% - var(--show-diff-enhanced-width)) / 2);
 }
 
 :not(#fake-id) .block-language-show-diff {
