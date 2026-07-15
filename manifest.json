@@ -1,0 +1,9 @@
+{
+	"id": "show-diff-enhanced",
+	"name": "Show Diff Enhanced",
+	"version": "0.1.0",
+	"minAppVersion": "0.15.0",
+	"description": "Render collapsible, side-by-side Git diffs in Obsidian files",
+	"author": "Ivan Lednev; enhanced fork for Matheus Dias",
+	"isDesktopOnly": true
+}
