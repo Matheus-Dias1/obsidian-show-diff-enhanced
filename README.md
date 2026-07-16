@@ -9,6 +9,22 @@ The original project and usage documentation follow below.
 
 🐞 [Original project issues](https://github.com/ivan-lednev/obsidian-automatic-changelog/issues)
 
+## Installation
+
+1. Download `main.js`, `manifest.json`, and `styles.css` from the latest GitHub release.
+2. Place them in `<vault>/.obsidian/plugins/show-diff-enhanced/`.
+3. Add `show-diff-enhanced` to the vault's enabled community plugins, or enable **Show Diff Enhanced** in Obsidian's Community plugins settings.
+4. Disable the original `show-diff` plugin if it is installed; both plugins register the same `show-diff` Markdown code block.
+
+## Development
+
+```sh
+npm ci
+npm run build
+```
+
+The build produces the three Obsidian runtime artifacts in the repository root.
+
 <!-- TOC -->
   * [Purpose](#purpose)
   * [Usage](#usage)
