@@ -24,6 +24,12 @@
 	left: 50%;
 	margin: 0;
 	transform: translateX(-50%);
+
+	&:hover {
+		border-color: transparent !important;
+		box-shadow: none !important;
+		outline: none !important;
+	}
 }
 
 :not(#fake-id) .block-language-show-diff {
@@ -51,9 +57,14 @@
 		width: revert;
 	}
 
-	.d2h-code-line-prefix, .d2h-info .d2h-code-line {
+	.d2h-code-line-prefix {
 		vertical-align: top;
 		color: var(--text-faint);
+	}
+
+	.d2h-info .d2h-code-line,
+	.d2h-info .d2h-code-side-line {
+		color: var(--text-muted);
 	}
 
 	.d2h-code-linenumber {
@@ -162,16 +173,30 @@
 	}
 
 	.d2h-code-side-linenumber {
-		background-color: var(--background-primary);
+		background-color: var(--background-primary) !important;
+		background-clip: border-box;
 		border-color: var(--divider-color);
 		box-shadow: 1px 0 0 var(--divider-color);
 		color: var(--text-faint);
 		display: table-cell;
-		left: 0;
-		min-width: 4em;
+		left: -1px;
+		min-width: calc(4em + 1px);
 		position: sticky;
-		width: 4em;
+		transform: translateX(-1px);
+		width: calc(4em + 1px);
 		z-index: 1;
+	}
+
+	.d2h-code-side-linenumber.d2h-ins {
+		background-color: color-mix(in srgb, var(--background-primary) 72%, #479845 28%) !important;
+	}
+
+	.d2h-code-side-linenumber.d2h-del {
+		background-color: color-mix(in srgb, var(--background-primary) 72%, #b3383e 28%) !important;
+	}
+
+	.d2h-code-side-linenumber.d2h-info {
+		background-color: var(--background-secondary) !important;
 	}
 
 	.d2h-diff-table td:nth-child(2) {
