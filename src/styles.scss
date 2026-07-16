@@ -164,11 +164,14 @@
 	.d2h-code-side-linenumber {
 		background-color: var(--background-primary);
 		border-color: var(--divider-color);
+		box-shadow: 1px 0 0 var(--divider-color);
 		color: var(--text-faint);
 		display: table-cell;
+		left: 0;
 		min-width: 4em;
-		position: static;
+		position: sticky;
 		width: 4em;
+		z-index: 1;
 	}
 
 	.d2h-diff-table td:nth-child(2) {
